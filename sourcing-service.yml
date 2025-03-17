@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: sourcing-service
+  datasource:
+    # Note: The URL includes the database name OLMS and sets the default schema to sourcing
+    url: jdbc:postgresql://localhost:5432/OLMS?currentSchema=sourcing
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    # Optional: HikariCP configuration (default connection pool in Spring Boot)
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    # Use the PostgreSQL dialect for Hibernate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    # Automatically update the database schema; consider other options for production
+    hibernate:
+      ddl-auto: update
+    # Enable SQL logging for debugging
+    show-sql: true
+  servlet:
+    multipart:
+          enabled: true
+          max-file-size: 100MB
+          max-request-size: 100MB
+          location: ${file.upload-dir}
+
+
+server:
+  port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"       # Exposes all actuator endpoints (health, metrics, info, etc.)
+      base-path: /actuator   # Sets the base path for actuator endpoints
+  endpoint:
+    health:
+      show-details: always   # Shows detailed health information
+  info:
+    env:
+      enabled: true
+
+
+springdoc:
+  api-docs:
+    enabled: true  # Enables the OpenAPI docs
+  swagger-ui:
+    enabled: true  # Enables the Swagger UI page
+file:
+  upload-dir: /home/avijit/Land-Management-System/OLMS-Backend/uploads #[LINUX] Set the directory where files will be uploaded
+#  upload-dir: D:/uploads #[WINDOWS]
+
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+info:
+  app:
+    name: Sourcing Service
+    description: It will control new sourcing submission, correction, bayna etc
+
+
+
