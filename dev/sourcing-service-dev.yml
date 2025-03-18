@@ -23,10 +23,10 @@ spring:
     show-sql: true
   servlet:
     multipart:
-          enabled: true
-          max-file-size: 100MB
-          max-request-size: 100MB
-          location: ${file.upload-dir}
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+      location: ${file.upload-dir}
 
 
 server:
@@ -52,8 +52,8 @@ springdoc:
   swagger-ui:
     enabled: true  # Enables the Swagger UI page
 file:
-  upload-dir: /home/avijit/Land-Management-System/OLMS-Backend/uploads #[LINUX] Set the directory where files will be uploaded
-#  upload-dir: D:/uploads #[WINDOWS]
+  #  upload-dir: /home/avijit/Land-Management-System/OLMS-Backend/uploads #[LINUX] Set the directory where files will be uploaded
+  upload-dir: D:/uploads #[WINDOWS]
 
 
 logging:
@@ -65,6 +65,3 @@ info:
   app:
     name: Sourcing Service
     description: It will control new sourcing submission, correction, bayna etc
-
-
-

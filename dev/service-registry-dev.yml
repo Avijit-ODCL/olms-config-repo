@@ -8,6 +8,10 @@ server:
 eureka:
   instance:
     hostname: localhost
+    lease-renewal-interval-in-seconds: 30   # Send heartbeats every 30 sec
+    lease-expiration-duration-in-seconds: 1200  # Wait 1200 sec before considering instance down
   client:
     register-with-eureka: false
     fetch-registry: false
+    registry-fetch-interval-seconds: 60   # Fetch registry updates every 60 sec
+    initial-instance-info-replication-interval-seconds: 30  # Delay initial replication
