@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+# Uncomment and customize the following if you want to define routing rules for your microservices:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/users/**
+#        - id: order-service
+#          uri: lb://ORDER-SERVICE
+#          predicates:
+#            - Path=/orders/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"       # Exposes all actuator endpoints (health, metrics, info, etc.)
+      base-path: /actuator   # Sets the base path for actuator endpoints
+  endpoint:
+    health:
+      show-details: always   # Shows detailed health information

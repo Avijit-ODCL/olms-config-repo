@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: authorization-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/OLMS?currentSchema=authorization
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8082

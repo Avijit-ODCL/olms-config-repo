@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: common-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/OLMS?currentSchema=common
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    # Optional: HikariCP configuration (default connection pool in Spring Boot)
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    # Use the PostgreSQL dialect for Hibernate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    # Automatically update the database schema; consider other options for production
+    hibernate:
+      ddl-auto: update
+    # Enable SQL logging for debugging
+    show-sql: true
+
+server:
+  port: 8090
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"       # Exposes all actuator endpoints (health, metrics, info, etc.)
+      base-path: /actuator   # Sets the base path for actuator endpoints
+  endpoint:
+    health:
+      show-details: always   # Shows detailed health information
+
+logging:
+  level:
+    root: INFO  # Global logging level for the application
+    org.springframework: ERROR  # Set logging level for Spring framework classes
+    com.odcl.olms: DEBUG  # Set logging level for your specific package
+  file:
+    name: logs/application.log  # Log file location and name
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # Console log pattern format
+
+
